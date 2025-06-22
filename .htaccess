@@ -1,0 +1,42 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Jika aplikasi diletakkan di subfolder (misal http://domain.com/subfolder/), uncomment dan sesuaikan:
+    # RewriteBase /subfolder/
+
+    # Handle Authorization Header (untuk JWT atau Bearer token)
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header (jika diperlukan oleh front-end)
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Jika request mengarah ke file/folder fisik (asset CSS/JS/image/storage publik), biarkan:
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Kirim semua request lain ke front controller:
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Proteksi file sensitif yang mungkin ada di root
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(?:\.env|artisan|composer\.(json|lock)|artisan\.php)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(?:\.env|artisan|composer\.(json|lock)|artisan\.php)$">
+        Deny from all
+    </FilesMatch>
+</IfModule>
