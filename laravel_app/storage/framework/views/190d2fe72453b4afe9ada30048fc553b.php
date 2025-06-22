@@ -1,0 +1,91 @@
+<?php $__env->startSection('content'); ?>
+<div class="container py-5">
+
+    <!-- Header Section -->
+    <div class="container mb-5 py-5 px-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <div class="position-relative overflow-hidden rounded-4 shadow-lg" style="height: 300px;">
+                    <div class="position-absolute w-100 h-100" style="background: #1b5e20 url('<?php echo e(asset('images/ekskul-bg.jpg')); ?>') center/cover;"></div>
+                    <div class="position-relative d-flex flex-column align-items-center justify-content-center h-100 text-white px-3">
+                        <h1 class="display-5 fw-bold mb-2" style="font-family: 'Merriweather', serif;">BERITA TERKINI</h1>
+                        <div class="d-flex align-items-center">
+                            <div class="border-top" style="width: 60px; border-color: #FFFF00!important;"></div>
+                            <img src="<?php echo e(asset('images/logo2.png')); ?>" alt="Logo" class="mx-3" style="width: 100px;">
+                            <div class="border-top" style="width: 60px; border-color: #FFFF00!important;"></div>
+                        </div>
+                        <p class="mt-3 mb-0 fs-5 fw-bold">SMP ISLAM PARUNG</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        
+        <div class="col-md-8">
+            <div class="row g-4">
+                <?php $__currentLoopData = $semuaBerita; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col-12 col-sm-6">
+                        <a href="<?php echo e(route('berita.show', $item->slug)); ?>" class="text-decoration-none">
+                            <article class="news-card h-100 shadow-sm rounded overflow-hidden">
+                                <div class="news-image">
+                                    <img src="<?php echo e(asset('storage/' . $item->gambar)); ?>" alt="<?php echo e($item->judul); ?>" class="img-fluid w-100" style="height:200px; object-fit:cover;">
+                                </div>
+                                <div class="news-content p-3">
+                                    <div class="news-date text-muted mb-1" style="font-size: 0.875rem;">
+                                        <i class="far fa-calendar me-2"></i><?php echo e(\Carbon\Carbon::parse($item->tanggal)->format('d M Y')); ?>
+
+                                    </div>
+                                    <h5 class="text-dark fw-bold"><?php echo e($item->judul); ?></h5>
+                                    <p class="text-muted" style="font-size: 0.9rem;"><?php echo e(Str::limit(strip_tags($item->excerpt), 100)); ?></p>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+
+            
+            <div class="mt-5 d-flex justify-content-center">
+                <?php echo e($semuaBerita->links()); ?>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="ps-md-3">
+                <h4 class="mb-3">Berita Terbaru</h4>
+                <?php $__currentLoopData = \App\Models\Berita::latest()->take(3)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $berita): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="mb-3 border-bottom pb-2">
+                        <a href="<?php echo e(route('berita.show', $berita->slug)); ?>" class="text-decoration-none text-dark">
+                            <h6 class="mb-1"><?php echo e(Str::limit($berita->judul, 60)); ?></h6>
+                            <small class="text-muted">
+                                <i class="far fa-calendar-alt me-1"></i>
+                                <?php echo e(\Carbon\Carbon::parse($berita->tanggal)->format('d M Y')); ?>
+
+                            </small>
+                        </a>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .pagination .page-item.active .page-link {
+        background-color: #1b5e20;
+        border-color: #1b5e20;
+        color: #fff;
+    }
+    .pagination .page-link {
+        color: #1b5e20;
+    }
+</style>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /home/u972015595/domains/lavenderblush-cod-866989.hostingersite.com/public_html/laravel_app/resources/views/berita/index.blade.php ENDPATH**/ ?>

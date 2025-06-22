@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "admin",
+        "email": "admin@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$Fg0fxrMoNOyrY9OP6lhJyuCP04uJJMY1XXpICXsEB4xjhsparaI4u",
+        "created_at": "2025-05-26T02:38:43.000000Z",
+        "updated_at": "2025-05-26T02:38:43.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "admin1",
+        "email": "admin1@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$Fg0fxrMoNOyrY9OP6lhJyuCP04uJJMY1XXpICXsEB4xjhsparaI4u",
+        "created_at": "2025-05-26T02:40:58.000000Z",
+        "updated_at": "2025-05-26T02:40:58.000000Z"
+    },
+    {
+        "id": 3,
+        "name": "daffa",
+        "email": "daffa@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$Fg0fxrMoNOyrY9OP6lhJyuCP04uJJMY1XXpICXsEB4xjhsparaI4u",
+        "created_at": "2025-05-26T02:42:30.000000Z",
+        "updated_at": "2025-05-26T02:42:30.000000Z"
+    },
+    {
+        "id": 4,
+        "name": "pedro",
+        "email": "pedro@gmail.com",
+        "email_verified_at": null,
+        "password": "$2y$12$Fg0fxrMoNOyrY9OP6lhJyuCP04uJJMY1XXpICXsEB4xjhsparaI4u",
+        "created_at": "2025-05-26T14:56:40.000000Z",
+        "updated_at": "2025-05-26T14:56:40.000000Z"
+    }
+]
